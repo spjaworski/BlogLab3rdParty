@@ -1,31 +1,53 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Blogs from './views/blogs';
+import SingleBlog from './views/singleBlog';
+import EditBlog from './views/EditBlog';
+import CreateBlog from './views/createBlog';
 
 /* HOOK REACT EXAMPLE */
-const App = (props: AppProps) => {
-	const [greeting, setGreeting] = useState<string>('');
-
-	useEffect(() => {
-		async function getGreeting() {
-			try {
-				const res = await fetch('/api/hello');
-				const greeting = await res.json();
-				setGreeting(greeting);
-			} catch (error) {
-				console.log(error);
-			}
-		}
-		getGreeting();
-	}, []);
+const App = () => {
 
 	return (
-		<main className="container my-5">
-			<h1 className="text-primary text-center">Hello {greeting}!</h1>
-		</main>
-	);
+		<BrowserRouter>
+			<main className='container m-5'>
+				<Routes>
+					<Route path='/' element={<h1 className='row justify-content-center'>Welcome to the Blogs Lab!</h1>} />
+					<Route path='/blogs' element={<Blogs />} />
+					<Route path='/blogs/:id' element={<SingleBlog />} />
+					<Route path='/blogs/:id/edit' element={<EditBlog />} />
+					<Route path='/create' element={<CreateBlog />} />
+				</Routes>
+			</main>
+		</BrowserRouter>
+	)
+
+
+
+	// const [greeting, setGreeting] = useState<string>('');
+
+	// useEffect(() => {
+	// 	async function getGreeting() {
+	// 		try {
+	// 			const res = await fetch('/api/hello');
+	// 			const greeting = await res.json();
+	// 			setGreeting(greeting);
+	// 		} catch (error) {
+	// 			console.log(error);
+	// 		}
+	// 	}
+	// 	getGreeting();
+	// }, []);
+
+	// return (
+	// 	<main className="container my-5">
+	// 		<h1 className="text-primary text-center">Hello {greeting}!</h1>
+	// 	</main>
+	// );
 };
 
-interface AppProps {}
+interface AppProps { }
 
 /* CLASS REACT EXAMPLE */
 // class App extends React.Component<IAppProps, IAppState> {
