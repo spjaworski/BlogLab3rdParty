@@ -3,7 +3,7 @@ import { IBlog } from '../../types';
 import { NewBlog } from '../../types';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import blogs from '../../server/database/blogs';
+// import blogs from '../../server/database/blogs';
 import { useNavigate } from 'react-router-dom';
 
 const BlogCard = ({ blog, isBlogDetailed }: BlogCardProps) => {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
-import blogs from '../../server/database/blogs';
+// import blogs from '../../server/database/blogs';
 import { IBlog } from '../../types';
 import BlogCard from '../componets/blogCard';
 import { useNavigate } from 'react-router-dom';
@@ -31,9 +31,9 @@ const Blogs = () => {
 
     return (
         <div className='container'>
-            <span className='justify-content-center'>
+            {/* <span className='justify-content-center'>
                 <button onClick={() => nav(`/create/`)} className="btn btn-success m-1 p-2">Create a Blog</button>
-            </span>
+            </span> */}
             <div className="row justify-content-center">
                 {blogs.map(b => (
                     <BlogCard key={`blog-card-${b.id}`} blog={b} />

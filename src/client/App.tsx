@@ -5,12 +5,14 @@ import Blogs from './views/blogs';
 import SingleBlog from './views/singleBlog';
 import EditBlog from './views/EditBlog';
 import CreateBlog from './views/createBlog';
+import Navbar from "./componets/Navbar";
 
 /* HOOK REACT EXAMPLE */
 const App = () => {
 
 	return (
 		<BrowserRouter>
+			<Navbar />
 			<main className='container m-5'>
 				<Routes>
 					<Route path='/' element={<h1 className='row justify-content-center'>Welcome to the Blogs Lab!</h1>} />

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import blogs from '../../server/database/blogs';
 import BlogCard from '../componets/blogCard';
 import { IBlog } from '../../types';
 
@@ -78,6 +77,7 @@ const EditBlog = () => {
 
                 if (res.ok) {
                     setBlog(blog);
+                    // setContent(blog.content);
                 } else {
                     alert(blog.message);
                 }

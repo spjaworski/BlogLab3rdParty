@@ -1,16 +1,9 @@
 import * as mysql from "mysql";
-import * as dotenv from 'dotenv';
-import blogs from "./blogs";
+import blogs from "./queries/blogs";
+import tags from "./queries/tags"
+import blogTags from "./queries/blogtags"
+import { mysqlConfig as config } from "../config"
 
-dotenv.config();
-
-const config = {
-    user: "BlogLab",
-    password: process.env.BLOG_KEY,
-    host: "localhost",
-    database: "Blogs", 
-    port: 3306
-};
 
 const pool = mysql.createPool(config);
 
@@ -22,11 +15,11 @@ const pool = mysql.createPool(config);
 //     }
 // });
 
-export const Query=<T=mysql.OkPacket>(query: string , values?: Array<unknown>) => {
+export const Query = <T = mysql.OkPacket>(query: string, values?: Array<unknown>) => {
     const formattedSQL = mysql.format(query, values || []);
 
-    return new Promise<T> ((resolve, reject) => {
-        pool.query(formattedSQL, (err,results) => {
+    return new Promise<T>((resolve, reject) => {
+        pool.query(formattedSQL, (err, results) => {
             if (err) return reject(err);
             return resolve(results);
         })
@@ -35,5 +28,7 @@ export const Query=<T=mysql.OkPacket>(query: string , values?: Array<unknown>) =
 }
 
 export default {
-    blogs
+    blogs,
+    tags,
+    blogTags
 }
