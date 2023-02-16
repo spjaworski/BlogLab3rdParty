@@ -6,6 +6,11 @@ import SingleBlog from './views/singleBlog';
 import EditBlog from './views/EditBlog';
 import CreateBlog from './views/createBlog';
 import Navbar from "./componets/Navbar";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import Donate from './componets/Donate';
+
+const stripe = loadStripe('pk_test_51MbCSeEj2tcMm6OrAb8PSterN4lpZeqikm7aw7jSTKOYyL8qitk8aQfUOJgDBpohjOmyoQWdAKNrmo2fIVDS83u800SnpMeDBh');
 
 /* HOOK REACT EXAMPLE */
 const App = () => {
@@ -20,6 +25,14 @@ const App = () => {
 					<Route path='/blogs/:id' element={<SingleBlog />} />
 					<Route path='/blogs/:id/edit' element={<EditBlog />} />
 					<Route path='/create' element={<CreateBlog />} />
+					<Route path='/donate' element={
+						<Elements stripe={stripe}>
+							{stripe && <Donate />}
+						</Elements>
+					} />
+					{/* <Elements stripe={stripe}>
+						<Donate />
+					</Elements> */}
 				</Routes>
 			</main>
 		</BrowserRouter>

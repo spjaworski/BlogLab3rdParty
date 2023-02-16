@@ -11,7 +11,10 @@ const Navbar = () => {
                 Blogs
             </Link>
             <Link to="/create" className='btn btn-light m-2'>
-                Create
+                Create a Blog
+            </Link>
+            <Link to="/donate" className='btn btn-light m-2'>
+                Donate
             </Link>
         </div>
     );

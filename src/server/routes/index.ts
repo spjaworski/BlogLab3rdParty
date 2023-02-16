@@ -1,13 +1,15 @@
 import * as express from 'express';
-import blogsRouter from './blogs'
-import tagsRouter from './tags'
-import database from '../database'
+import blogsRouter from './blogs';
+import tagsRouter from './tags';
+import donateRouter from './donate';
+import database from '../database';
 
 
 const router = express.Router();
 
 router.use('/api/blogs', blogsRouter);
 router.use('/api/tags', tagsRouter);
+router.use('/api.donate', donateRouter);
 
 
 
