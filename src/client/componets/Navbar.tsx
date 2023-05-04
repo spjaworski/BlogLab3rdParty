@@ -16,6 +16,9 @@ const Navbar = () => {
             <Link to="/donate" className='btn btn-light m-2'>
                 Donate
             </Link>
+            <Link to="/email" className='btn btn-light m-2'>
+                Contact us
+            </Link>
         </div>
     );
 };

@@ -1,4 +1,5 @@
 import { OkPacket } from "mysql";
+import { Request } from 'express';
 
 export interface IBlog {
     id: number;
@@ -14,6 +15,12 @@ export interface IBlog {
 //     title: IBlog["title"];
 //     authorID: IBlog["authorid"];
 // }
+
+export interface Payload {
+    id: User['id'];
+    email: User['email'];
+    password?: User['password'];
+}
 
 export interface NewBlog {
     title: string;
@@ -32,3 +39,22 @@ export interface ITag {
 }
 
 export type sp<T> = [T, OkPacket]
+
+export interface NewUser {
+    email: string;
+    password?: string;
+}
+
+export interface User extends NewUser {
+    id: number;
+    created_at: string | Date;
+}
+
+export interface ReqUser extends Request {
+    user?: {
+        id?: number;
+        email?: string;
+        password?: string;
+        created_at?: Date;
+    }
+}

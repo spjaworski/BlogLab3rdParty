@@ -43,8 +43,11 @@ const Donate = (props: DonateProps) => {
             <section className='row mt-5 justify-content-center'>
                 <div className='col-md-6'>
                     <form className='form-group p-3 border rounded-lg'>
+                        <label>Name:</label>
                         <input className='form-control' value={name} onChange={e => setName(e.target.value)} />
+                        <label>Amount you want to donate:</label>
                         <input className='form-control' value={amount} onChange={e => setAmount(e.target.value)} />
+                        <label>Payment Info:</label>
                         <CardElement className="form-control" />
                         <button onClick={handleSubmit} className='btn btn-primary'>Donate</button>
                     </form>

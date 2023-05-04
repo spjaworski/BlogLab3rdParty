@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
             currency: 'usd',
             amount: req.body.amount * 100,
             confirm: true,
-            payment_method: req.body.payment_method.id
+            payment_method: req.body.paymentMethod.id
         });
         res.json(paymentFulfilled);
     } catch (error) {

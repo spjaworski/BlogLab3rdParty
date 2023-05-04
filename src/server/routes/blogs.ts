@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     try {
-        console.log('Blogs (all) connected')
         const blogs = (await database.blogs.getBlogWithTags())[0];
+        console.log('Blogs (all) connected')
         res.json(blogs);
     } catch (e) {
         console.log(e);

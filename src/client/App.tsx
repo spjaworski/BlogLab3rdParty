@@ -9,6 +9,7 @@ import Navbar from "./componets/Navbar";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import Donate from './componets/Donate';
+import Email from './views/Email';
 
 const stripe = loadStripe('pk_test_51MbCSeEj2tcMm6OrAb8PSterN4lpZeqikm7aw7jSTKOYyL8qitk8aQfUOJgDBpohjOmyoQWdAKNrmo2fIVDS83u800SnpMeDBh');
 
@@ -27,12 +28,10 @@ const App = () => {
 					<Route path='/create' element={<CreateBlog />} />
 					<Route path='/donate' element={
 						<Elements stripe={stripe}>
-							{stripe && <Donate />}
+							<Donate />
 						</Elements>
 					} />
-					{/* <Elements stripe={stripe}>
-						<Donate />
-					</Elements> */}
+					<Route path='/email' element={<Email />} />
 				</Routes>
 			</main>
 		</BrowserRouter>
@@ -99,3 +98,7 @@ interface AppProps { }
 // }
 
 export default App;
+
+
+// https://rufus.ie/en/
+// https://ubuntu.com/download/desktop/thank-you?version=22.04.1&architecture=amd64

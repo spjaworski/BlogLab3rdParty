@@ -22,8 +22,11 @@ const Email = () => {
             <div className='row justify-content-center'>
                 <div className='col-12 col-md-8'>
                     <form className='form-group p-3 shadow-md'>
+                        <label>Your Email Account:</label>
                         <input value={from} onChange={e => setFrom(e.target.value)} className="form-control mb-3" />
-                        <input value={from} onChange={e => setSubject(e.target.value)} className="form-control mb-3" />
+                        <label>Subject:</label>
+                        <input value={subject} onChange={e => setSubject(e.target.value)} className="form-control mb-3" />
+                        <label>What would you like to say?</label>
                         <textarea value={message} onChange={e => setMessage(e.target.value)} className="form-control mb-3" />
                         <button onClick={handleSubmit} className="btn btn-primary">Send Email</button>
                     </form>

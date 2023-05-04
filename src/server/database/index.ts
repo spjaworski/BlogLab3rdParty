@@ -2,6 +2,7 @@ import * as mysql from "mysql";
 import blogs from "./queries/blogs";
 import tags from "./queries/tags"
 import blogTags from "./queries/blogtags"
+import users from "./queries/users";
 import { mysqlConfig as config } from "../config"
 
 
@@ -30,5 +31,6 @@ export const Query = <T = mysql.OkPacket>(query: string, values?: Array<unknown>
 export default {
     blogs,
     tags,
-    blogTags
+    blogTags,
+    users
 }
