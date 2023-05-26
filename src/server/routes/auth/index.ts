@@ -52,11 +52,12 @@ router.post('/login', passport.authenticate('local', { session: false }), async 
         console.log(req.user?.id);
         const [userFound] = await database.users.find('email', email);
         if (userFound && bcrypt.compareSync(password, userFound.password!)) {
-            const token = jwt.sign({ userid: userFound.id, email: userFound.email, role: 'guest' },
+            const token = jwt.sign({ userid: userFound.id, email: userFound.email, role: 1 },
                 jwtConfig.secret,
                 { expiresIn: '50m' }
             );
             console.log(userFound);
+            delete userFound.password;
             res.json({ message: "Logged in", token, userFound });
             return;
         }
@@ -64,7 +65,7 @@ router.post('/login', passport.authenticate('local', { session: false }), async 
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Error with log in router" })
+        res.status(500).json({ message: "Internal error with log in router" })
     }
 })
 

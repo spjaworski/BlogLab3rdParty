@@ -16,10 +16,17 @@ export interface IBlog {
 //     authorID: IBlog["authorid"];
 // }
 
+// export interface Payload {
+//     id: User['id'];
+//     email: User['email'];
+//     password?: User['password'];
+// }
+
 export interface Payload {
-    id: User['id'];
-    email: User['email'];
-    password?: User['password'];
+    userid: number;
+    email: string;
+    role: number;
+    password?: string;
 }
 
 export interface NewBlog {
@@ -58,3 +65,9 @@ export interface ReqUser extends Request {
         created_at?: Date;
     }
 }
+
+// userid: 2,
+//   email: 'newtest@test.com',
+//   role: 'guest',
+//   iat: 1684956787,
+//   exp: 1684959787

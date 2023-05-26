@@ -1,12 +1,17 @@
 import * as jwt from 'jsonwebtoken';
 import * as passport from 'passport';
+import * as config from '../../config';
 import { authenticate } from 'passport';
 import { jwtConfig } from '../../config';
 import { Router } from 'express';
+import { ReqUser } from '../../../types';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async (req: ReqUser, res) => {
+
+    // passport.authenticate('jwt')
+
     try {
 
         const bearerToken = (req.headers.authorization?.split(' '))
@@ -51,3 +56,4 @@ router.get('/', async (req, res) => {
 // });
 
 export default router;
+

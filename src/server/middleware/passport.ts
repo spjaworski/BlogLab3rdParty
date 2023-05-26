@@ -9,34 +9,27 @@ import { Payload } from "../../types";
 
 export function configurePassport(app: Application) {
 
-    // passport.serializeUser((user, done) => done(null, user));
-    // passport.deserializeUser((user, done) => done(null, user));
-    // passport.deserializeUser(function(id, done) {
-    //     User.findById(id, function (err, user) {
-    //       done(err, user);
-    //     });
-    //   });
 
     passport.use(new LocalStrategy.Strategy({
         usernameField: 'email',
     }, async (email, password, done) => {
         try {
-            const [user] = await users.find('email', email);
+            const [userFound] = await users.find('email', email);
 
 
-            if (!user) {
+            if (!userFound) {
                 done(null, false);
             }
 
-            const confirmedMatch = bcrypt_utils.compareHash(password, user.password!);
+            const confirmedMatch = bcrypt_utils.compareHash(password, userFound.password!);
+            delete userFound.password;
             if (!confirmedMatch) return done(null, false);
 
-            delete user.password;
-            done(null, user);
+            delete userFound.password;
+            done(null, userFound);
 
         } catch (error) {
             console.log(error);
-            done(error, false);
         }
     }));
 
@@ -51,5 +44,5 @@ export function configurePassport(app: Application) {
     }
     )
     );
-    app.use(passport.initialize());
+    // app.use(passport.initialize());
 }

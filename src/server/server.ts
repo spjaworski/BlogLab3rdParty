@@ -7,7 +7,9 @@ import { configurePassport } from './middleware/passport';
 import "./database";
 
 const app = express();
+
 configurePassport(app);
+
 app.use(passport.initialize());
 app.use(express.static('public'));
 app.use(express.json());
