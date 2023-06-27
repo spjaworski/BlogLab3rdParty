@@ -25,6 +25,8 @@ router.get('/', async (req: ReqUser, res) => {
 
         console.log(payload);
 
+
+
         res.json({ message: `Revised Home Test Successful for ${payload.email}` })
 
     } catch (error) {

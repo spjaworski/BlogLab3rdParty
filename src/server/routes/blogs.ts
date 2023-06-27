@@ -1,5 +1,6 @@
 import * as express from 'express';
-import database from '../database'
+import database from '../database';
+import * as passport from 'passport';
 
 const router = express.Router();
 
@@ -31,17 +32,18 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.put('/:id/edit', async (req, res) => {
+router.put('/:id/edit', passport.authenticate('jwt'), async (req, res) => {
     try {
         console.log('blog connected, put request')
         const id = parseInt(req.params.id);
         const content = req.body.content;
+        const userID = parseInt(req.body.user.id);
         if (!id) return res.status(400).json({ message: "ID must be an integer" })
         if (!content) return res.status(400).json({ message: "Must have new text to submit an edit" })
 
         console.log(req);
 
-        await database.blogs.editBlog(id, content)
+        await database.blogs.editBlog(id, content, userID)
 
         res.status(201).json({ message: "Updated Successfully" })
     } catch (e) {
@@ -50,14 +52,15 @@ router.put('/:id/edit', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', passport.authenticate('jwt'), async (req, res) => {
     try {
         console.log('blogs connected, delete request')
         const id = parseInt(req.params.id);
+        const userID = parseInt(req.body.user.id)
         if (!id) return res.status(400).json({ message: "ID must be an integer" })
         console.log(req);
         await database.blogTags.deleteBlogTags(id);
-        await database.blogs.deleteBlog(id);
+        await database.blogs.deleteBlog(id, userID);
         res.status(200).json({ message: "Blog Deleted" });
     } catch (e) {
         console.log(e);
@@ -65,7 +68,7 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', passport.authenticate('jwt'), async (req, res) => {
     try {
         const { title, content, tagIDs, createdTags } = req.body;
         if (!title || !content || !tagIDs || !createdTags) {
@@ -76,7 +79,7 @@ router.post('/', async (req, res) => {
         console.log('blogs connected, create request');
         console.log(req);
         console.log(res);
-        const InsertedBlog = (await database.blogs.addBlog({ title, content }));
+        const InsertedBlog = (await database.blogs.addBlog({ title, content }, req.body.user!.id));
         for await (const tagName of createdTags) {
             const newTag = await database.tags.addNewTag(tagName)
             await database.blogTags.addBlogTags({ blogID: InsertedBlog.insertId, tagID: newTag.insertId })

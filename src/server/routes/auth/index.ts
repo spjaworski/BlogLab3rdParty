@@ -56,7 +56,7 @@ router.post('/login', passport.authenticate('local', { session: false }), async 
                 jwtConfig.secret,
                 { expiresIn: '50m' }
             );
-            console.log(userFound);
+            // console.log(userFound);
             delete userFound.password;
             res.json({ message: "Logged in", token, userFound });
             return;
@@ -77,3 +77,6 @@ export default router;
 //             return res.status(401).json({ message: 'Invalid Credentials' })
 //         }
 //         res.json('login successful');
+
+
+// , passport.authenticate('jwt')

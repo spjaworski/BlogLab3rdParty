@@ -15,13 +15,28 @@ const stripe = loadStripe('pk_test_51MbCSeEj2tcMm6OrAb8PSterN4lpZeqikm7aw7jSTKOY
 
 /* HOOK REACT EXAMPLE */
 const App = () => {
+	const [testMess, setTestmess] = useState<{ message: string }>()
+
+	useEffect(() => {
+
+		const TOKEN = localStorage.getItem('token');
+
+		fetch('/api/homeTest', {
+			method: 'GET',
+			headers: {
+				'Authorization': `Bearer ${TOKEN}`
+			}
+		})
+			.then(res => res.json())
+			.then(data => setTestmess(data));
+	}, [])
 
 	return (
 		<BrowserRouter>
 			<Navbar />
 			<main className='container m-5'>
 				<Routes>
-					<Route path='/' element={<h1 className='row justify-content-center'>Welcome to the Blogs Lab!</h1>} />
+					<Route path='/' element={<h1 className='row justify-content-center'>{testMess?.message}</h1>} />
 					<Route path='/blogs' element={<Blogs />} />
 					<Route path='/blogs/:id' element={<SingleBlog />} />
 					<Route path='/blogs/:id/edit' element={<EditBlog />} />
