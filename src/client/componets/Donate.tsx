@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import Swal from 'sweetalert2';
 import { Stripe } from 'stripe';
 
 
@@ -26,6 +27,11 @@ const Donate = (props: DonateProps) => {
         });
 
         if (error) {
+            Swal.fire({
+                title: "Payment Error, please check that all credit card info is correct",
+                icon: 'error',
+                confirmButtonText: 'Continue'
+            })
             console.log('[error]', error);
         } else {
             const res = await fetch('/api/donate', {
@@ -35,6 +41,7 @@ const Donate = (props: DonateProps) => {
             });
             const successfulPayment = await res.json();
             console.log(successfulPayment);
+
         }
     }
 
@@ -49,7 +56,7 @@ const Donate = (props: DonateProps) => {
                         <input className='form-control' value={amount} onChange={e => setAmount(e.target.value)} />
                         <label>Payment Info:</label>
                         <CardElement className="form-control" />
-                        <button onClick={handleSubmit} className='btn btn-primary'>Donate</button>
+                        <button onClick={handleSubmit} className='btn btn-primary m-2'>Donate</button>
                     </form>
                 </div>
             </section>

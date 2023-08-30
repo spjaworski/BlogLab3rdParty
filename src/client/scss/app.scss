@@ -5,8 +5,9 @@ $success: #3e8d63;
 $info: #13101c;
 $warning: #945707;
 $danger: #d62518;
-$light: #f8f9fa;
-$dark: #343a40;
+$light: #c3c7cace;
+$dark: #8e9395;
+$lightBlue: #3a3fde;
 
 // Then add them to your custom theme-colors map, together with any additional colors you might need
 $theme-colors: (
@@ -18,6 +19,7 @@ $theme-colors: (
 	danger: $danger,
 	light: $light,
 	dark: $dark,
+	lightBlue: $lightBlue
 	// add any additional color below
 );
 

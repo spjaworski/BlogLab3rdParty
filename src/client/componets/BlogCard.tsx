@@ -23,10 +23,10 @@ const BlogCard = ({ blog, isBlogDetailed }: BlogCardProps) => {
                     </span>
                     <span className='justify-content-end'>
                         <Link to={`/blogs/${blog.id}/edit`}>
-                            <button className='btn btn-warning m-1 p-2 col-2 justify-content-end'>Edit</button>
+                            <button className='btn btn-warning m-1 p-2 col-2 justify-content-right'>Edit</button>
                         </Link>
                     </span>
-                    <span className='justify-content-end'>
+                    <span className='justify-content-right'>
                         <button onClick={() => nav(`/blogs`)} className="btn btn-warning m-1 p-2 col-2" >Go Back</button>
                     </span>
                 </div>}

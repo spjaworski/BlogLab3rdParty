@@ -10,33 +10,52 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import Donate from './componets/Donate';
 import Email from './views/Email';
+import Home from './views/Home';
+import { apiService } from './services/api-service';
+import LoginPage from './componets/LoginPage'
+import RegisterPage from './componets/registerPage';
 
 const stripe = loadStripe('pk_test_51MbCSeEj2tcMm6OrAb8PSterN4lpZeqikm7aw7jSTKOYyL8qitk8aQfUOJgDBpohjOmyoQWdAKNrmo2fIVDS83u800SnpMeDBh');
 
-/* HOOK REACT EXAMPLE */
+
 const App = () => {
-	const [testMess, setTestmess] = useState<{ message: string }>()
 
-	useEffect(() => {
+	// const handleLogin = async () => {
+	// 	try {
+	// 		const token = apiService('/auth/login', 'POST', {
+	// 			email: 'newTest@test.com',
+	// 			password: 'hunter3'
+	// 		});
+	// 		console.log(token);
+	// 	} catch (error) {
+	// 		console.log('handleLogin failed');
+	// 	}
+	// }
 
-		const TOKEN = localStorage.getItem('token');
+	// const [testMess, setTestmess] = useState<{ message: string }>()
 
-		fetch('/api/homeTest', {
-			method: 'GET',
-			headers: {
-				'Authorization': `Bearer ${TOKEN}`
-			}
-		})
-			.then(res => res.json())
-			.then(data => setTestmess(data));
-	}, [])
+	// useEffect(() => {
+
+	// 	const TOKEN = localStorage.getItem('token');
+
+	// 	fetch('/api/homeTest', {
+	// 		method: 'GET',
+	// 		headers: {
+	// 			'Authorization': `Bearer ${TOKEN}`
+	// 		}
+	// 	})
+	// 		.then(res => res.json())
+	// 		.then(data => setTestmess(data));
+	// }, [])
 
 	return (
 		<BrowserRouter>
 			<Navbar />
 			<main className='container m-5'>
+				{/* <button onClick={handleLogin}>Login Test</button> */}
 				<Routes>
-					<Route path='/' element={<h1 className='row justify-content-center'>{testMess?.message}</h1>} />
+					{/* <Route path='/' element={<h1 className='row justify-content-center'>{testMess?.message}</h1>} /> */}
+					<Route path='/' element={<Home />} />
 					<Route path='/blogs' element={<Blogs />} />
 					<Route path='/blogs/:id' element={<SingleBlog />} />
 					<Route path='/blogs/:id/edit' element={<EditBlog />} />
@@ -47,6 +66,14 @@ const App = () => {
 						</Elements>
 					} />
 					<Route path='/email' element={<Email />} />
+					<Route path='/pizza'
+						element={<h1 className='text-center display-1'>Pizza</h1>}
+					/>
+					<Route path='/register' element={<RegisterPage />} />
+					<Route path='/login' element={<LoginPage />} />
+					<Route path="*">
+						{() => <h1 className='text-center'>404: Page Not Found</h1>}
+					</Route>
 				</Routes>
 			</main>
 		</BrowserRouter>

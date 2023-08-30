@@ -66,6 +66,12 @@ export interface ReqUser extends Request {
     }
 }
 
+export interface IFetchOptions {
+    method: string;
+    headers?: HeadersInit;
+    body?: string;
+}
+
 // userid: 2,
 //   email: 'newtest@test.com',
 //   role: 'guest',

@@ -30,7 +30,7 @@ const Blogs = () => {
     }, [])
 
     return (
-        <div className='container'>
+        <div className='container p-1'>
             {/* <span className='justify-content-center'>
                 <button onClick={() => nav(`/create/`)} className="btn btn-success m-1 p-2">Create a Blog</button>
             </span> */}
