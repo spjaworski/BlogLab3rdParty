@@ -20,7 +20,7 @@ const Home = (props: HomeProps) => {
         //         })
         //         .then(res => res.json())
         //         .then(data => setHomeMess(data))
-    })
+    }, [])
 
     // const defeatedBirdLogo = require('https://i2.cdn.turner.com/money/dam/assets/140327111009-wounded-twitter-bird-1024x576.png')
 

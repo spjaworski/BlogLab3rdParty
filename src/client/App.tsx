@@ -71,7 +71,7 @@ const App = () => {
 					/>
 					<Route path='/register' element={<RegisterPage />} />
 					<Route path='/login' element={<LoginPage />} />
-					<Route path="*">
+					<Route path='*'>
 						{() => <h1 className='text-center'>404: Page Not Found</h1>}
 					</Route>
 				</Routes>

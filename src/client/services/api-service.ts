@@ -1,7 +1,7 @@
 import { IFetchOptions } from "../../types";
 export const TOKEN_KEY = 'token'
 
-export async function apiService<t = any>(uri: string, method: string = 'GET',
+export async function apiService<T = any>(uri: string, method: string = 'GET',
     data?: {}) {
     const TOKEN = localStorage.getItem(TOKEN_KEY);
 
@@ -44,7 +44,7 @@ export async function apiService<t = any>(uri: string, method: string = 'GET',
         }
 
         if (res.ok) {
-            return <t>await res.json();
+            return <T>await res.json();
         }
     } catch (error) {
         console.error('[error]', error.message);
