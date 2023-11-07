@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { IBlog } from '../../types';
 import BlogCard from '../componets/blogCard';
 import { useNavigate } from 'react-router-dom';
+import { apiService } from '../services/api-service';
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -12,7 +13,7 @@ const Blogs = () => {
     useEffect(() => {
         async function getBlogs() {
             try {
-                const res = await fetch('/api/blogs');
+                const res = await apiService('/api/blogs');
                 console.log(res)
                 const blogs = await res.json();
 

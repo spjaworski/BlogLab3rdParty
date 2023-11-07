@@ -1,5 +1,5 @@
 import { IFetchOptions } from "../../types";
-export const TOKEN_KEY = 'token'
+export const TOKEN_KEY = 'TOKEN'
 
 export async function apiService<T = any>(uri: string, method: string = 'GET',
     data?: {}) {

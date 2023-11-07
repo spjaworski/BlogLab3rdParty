@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
+// import { Link, redirect } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { apiService } from '../services/api-service';
+import { TOKEN_KEY, apiService } from '../services/api-service';
+
 
 
 
@@ -15,6 +16,12 @@ const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    // useEffect(() => {
+    //     apiService('/auth/login')
+    //         .then(TOKEN_KEY => localStorage.setItem('token', TOKEN_KEY))
+    //         .catch(() => alert('apiService log in error'))
+    // })
 
     // useEffect(() => {
     //     apiService('/auth/login').then(data => console.log(data))
@@ -42,18 +49,6 @@ const LoginPage = () => {
     const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        apiService('/auth/login', 'POST', { email, password }).then(data => console.log(data))
-            .then(token => console.log(token))
-            .catch(() =>
-                Swal.fire({
-                    title: "Log in failed, please check that both fields are filled out and spelled correctly",
-                    icon: 'error',
-                    confirmButtonText: 'Continue'
-                }));
-
-
-
-
         if (!email || !password) {
             Swal.fire({
                 title: "Log in failed, both a username and a password are required",
@@ -75,13 +70,32 @@ const LoginPage = () => {
             // });
             // const loginResponse = await res.json();
             // console.log(loginResponse);
+
+            apiService('/auth/login', 'POST', { email, password })
+                // .then(data => console.log(data))
+                .then(packet => {
+                    console.log(packet)
+                    localStorage.setItem(TOKEN_KEY, packet.token);
+                })
+
+                .catch(() =>
+                    Swal.fire({
+                        title: "Log in failed, please check that both fields are filled out and spelled correctly",
+                        icon: 'error',
+                        confirmButtonText: 'Continue'
+                    }));
+            // setToken('token')
+
             Swal.fire({
                 title: "Logged in!",
                 icon: 'success',
                 confirmButtonText: 'Continue'
             })
             setPassword('');
-            // return redirect('');
+
+
+            // const genTOKEN = localStorage.setItem('TOKEN', token)
+            // console.log(genTOKEN)
             nav("/");
 
         }

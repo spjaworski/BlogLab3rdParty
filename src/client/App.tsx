@@ -14,6 +14,7 @@ import Home from './views/Home';
 import { apiService } from './services/api-service';
 import LoginPage from './componets/LoginPage'
 import RegisterPage from './componets/registerPage';
+import PrivateRoute from './componets/PrivateRoute';
 
 const stripe = loadStripe('pk_test_51MbCSeEj2tcMm6OrAb8PSterN4lpZeqikm7aw7jSTKOYyL8qitk8aQfUOJgDBpohjOmyoQWdAKNrmo2fIVDS83u800SnpMeDBh');
 
@@ -66,9 +67,9 @@ const App = () => {
 						</Elements>
 					} />
 					<Route path='/email' element={<Email />} />
-					<Route path='/pizza'
+					{/* <Route path='/pizza'
 						element={<h1 className='text-center display-1'>Pizza</h1>}
-					/>
+					/> */}
 					<Route path='/register' element={<RegisterPage />} />
 					<Route path='/login' element={<LoginPage />} />
 					<Route path='*'>
