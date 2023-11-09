@@ -11,7 +11,8 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
 
     if (!TOKEN) {
         return (
-            nav("/login"))
+            <div>Hi</div>
+        )
 
     } else {
         return (
