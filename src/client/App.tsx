@@ -60,7 +60,10 @@ const App = () => {
 					<Route path='/blogs' element={<Blogs />} />
 					<Route path='/blogs/:id' element={<SingleBlog />} />
 					<Route path='/blogs/:id/edit' element={<EditBlog />} />
-					<Route path='/create' element={<CreateBlog />} />
+					<Route path='/create' element={
+						<PrivateRoute>
+							<CreateBlog />
+						</PrivateRoute>} />
 					<Route path='/donate' element={
 						<Elements stripe={stripe}>
 							<Donate />

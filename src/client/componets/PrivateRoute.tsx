@@ -7,7 +7,8 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
 
     const nav = useNavigate();
 
-    const TOKEN = localStorage.getItem('token');
+    const TOKEN = localStorage.getItem('TOKEN');
+    console.log(TOKEN);
 
     if (!TOKEN) {
         return (
@@ -16,13 +17,13 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
 
     } else {
         return (
-            <Route {...rest}>{children}</Route>
+            <>{children}</>
         );
     }
 };
 
 interface PrivateRouteProps {
-    path: string;
+    // path: string;
     exact?: boolean;
     children: React.ReactNode;
 }
