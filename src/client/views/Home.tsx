@@ -31,9 +31,9 @@ const Home = (props: HomeProps) => {
             {/* <img alt='logo' style={{ width: 100 }} src={String(defeatedBirdLogo)} /> */}
             {/* <div className='p-1'>*insert shitty drawing of the Twitter bird here*</div> */}
             <span style={{ fontWeight: 'bold' }}>*insert shitty bird drawing here*</span>
-            <div>
+            {/* <div>
                 <h1 className="text-center display-1">{homeMess}</h1>
-            </div>
+            </div> */}
         </div>
     );
 };

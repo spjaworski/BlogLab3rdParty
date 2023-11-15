@@ -59,8 +59,8 @@ const App = () => {
 					<Route path='/' element={<Home />} />
 					<Route path='/blogs' element={<Blogs />} />
 					<Route path='/blogs/:id' element={<SingleBlog />} />
-					<PrivateRoute path='/blogs/:id/edit' children={<EditBlog />} />
-					<PrivateRoute path='/create' children={<CreateBlog />} />
+					<Route path='/blogs/:id/edit' element={<EditBlog />} />
+					<Route path='/create' element={<CreateBlog />} />
 					<Route path='/donate' element={
 						<Elements stripe={stripe}>
 							<Donate />

@@ -15,13 +15,16 @@ const Blogs = () => {
             try {
                 const res = await apiService('/api/blogs');
                 console.log(res)
-                const blogs = await res.json();
+                const blogs = await res
 
-                if (res.ok) {
-                    setBlogs(blogs);
-                } else {
-                    alert(blogs.message);
-                }
+
+                setBlogs(blogs)
+
+                // if (res.ok) {
+                //     setBlogs(blogs);
+                // } else {
+                //     alert(blogs.message);
+                // }
             } catch (error) {
                 alert("Error, check console");
                 console.error(error);

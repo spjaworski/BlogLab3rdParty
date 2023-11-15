@@ -11,14 +11,13 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps) => {
 
     if (!TOKEN) {
         return (
-            <div>Hi</div>
+            <div>Hi! no Authenticator Token Found, Please Log in First</div>
         )
 
     } else {
         return (
             <Route {...rest}>{children}</Route>
         );
-
     }
 };
 
